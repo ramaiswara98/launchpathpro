@@ -1,0 +1,6 @@
+@import url('./color.css');
+:root{
+    --primary-color:var(--green);
+    --secondary-color:var(--dark-blue);
+    --aleternate-color:var(--gray);
+}

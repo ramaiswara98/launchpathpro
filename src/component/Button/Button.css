@@ -1,0 +1,17 @@
+@import url('../../assets/styles/styles.css');
+@import url('../../assets//styles/color.css');
+@import url('../../assets//styles/font.css');
+.button-container{
+    background-color: var(--primary-color);
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.button-text{
+    color: var(--pure-white);
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+}
