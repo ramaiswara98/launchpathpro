@@ -21,7 +21,11 @@ function Button(props) {
     
   }
   return (
-    <div className='button-container' style={{backgroundColor:checkButtonType(props.type)}}>
+    <div 
+      className='button-container' 
+      style={{backgroundColor:checkButtonType(props.type)}}
+      onClick={props.onClick}
+    >
         <p className='button-text'>{props.text}</p>
     </div>
   )

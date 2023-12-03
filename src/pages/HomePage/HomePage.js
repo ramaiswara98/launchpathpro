@@ -12,9 +12,13 @@ import { Constant } from '../../utils/Constant'
 import Footer from '../../component/Footer/Footer'
 
 function HomePage() {
+  
+  
   return (
     <div className='home-page'>
-        <Navbar/>
+        <Navbar
+          type={'home'}
+        />
         <div className='home-container'>
           <div className='hero-section'>
             <div className='image-container'>

@@ -1,0 +1,35 @@
+.sign-up-page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+}
+
+.sign-up-button-container{
+    margin-top: 20px;
+}
+.sign-up-input-container{
+    width: 500px;
+}
+.sign-up-logo-container{
+    margin-bottom: 50px;
+}
+.sign-up-to-login-container{
+
+}
+.sign-up-to-login-text{
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+}
+.sign-up-to-login-text span{
+    color: var(--green);
+    cursor: pointer;
+}
+
+@media (max-width:768px) {
+    .sign-up-input-container{
+        width: 60vw;
+        margin-bottom: 20px;
+    }
+}
