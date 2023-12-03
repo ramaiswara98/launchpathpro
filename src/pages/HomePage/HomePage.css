@@ -236,46 +236,46 @@
     }
     
     .clock-ticking-container{
-        width: 1200px;
+        width: 400px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
     }
     
     .dare-you-container{
-        width: 1200px;
+        width: 400px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
     }
     
     .clock-ticking-left{
-        width: 50%;
+        width: 100%;
+        order: 2;
     }
     
     .dare-you-left{
-        width: 50%;
+        width: 100%;
+        order: 2;
     }
     
     .andrew-container{
-        width: 1200px;
+        width: 400px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         margin-top: 50px;
     }
     
     .andrew-left{
-        width: 50%;
+        width: 100%;
+        order: 2;
     }
     
     .title-text{
         font-family: 'Kanit', sans-serif;
-        font-size: 64px;
+        font-size: 45px;
         font-weight: bold;
         color: var(--green);
         margin: 0;
-        width: 1000px;
+        width: 400px;
         margin: 0;
         line-height: 1;
     }
@@ -289,7 +289,8 @@
     }
     
     .image-section{
-        width: 443px;
-        height: 443px;
+        width: 400px;
+        height: 400px;
+        order: 1;
     }
 }
