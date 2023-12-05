@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Dashboard.css";
 import Navbar from "../../component/NavBar/Navbar";
 import IdeaCard from "../../component/IdeaCard/IdeaCard";
 import Modal from "../../component/Modal/Modal";
 import CreateBusinessModal from "./CreateBusinessModal/CreateBusinessModal";
+import { checkCurrentUser } from "../../services/Firebase/FireBaseAuth/AuthWithEmail";
 
 function Dashboard() {
   const listProject = [
@@ -15,7 +16,11 @@ function Dashboard() {
     "100M Idea",
     "copy pates",
   ];
-
+  const [showPage, setShowPage] = useState(false);
+  useEffect(()=> {
+    checkCurrentUser(setShowPage)
+  },[])
+ 
   const [businessName, setBusinessName] = useState();
   const [businessIdea, setBusinessIdea] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -24,8 +29,11 @@ function Dashboard() {
     setShowModal(!showModal);
   }
   return (
-    <div className="dashboard-page">
-      <Navbar />
+    <>
+    {showPage&&(
+      <div className="dashboard-page">
+      
+      <Navbar type={"login"}/>
       <div className="dashboard-centering">
         <div className="dashboard-container">
           <IdeaCard start={true} onClickStart={toggleModal}/>
@@ -52,6 +60,9 @@ function Dashboard() {
        />
       </Modal>
     </div>
+    )}
+    </>
+    
   );
 }
 

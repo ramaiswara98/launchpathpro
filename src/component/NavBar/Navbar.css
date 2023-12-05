@@ -12,8 +12,54 @@
     cursor: pointer;
 }
 
+.person-icon{
+    width: 45px;
+    height: 45px;
+}
+
+.overlay {
+    position: fixed;
+    top: 70px;
+    right: 75px;
+    padding: 10px 30px;
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--pure-white); /* Semi-transparent black overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Adjust the z-index as needed */
+  }
+.overlay-item{
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--gray);
+}
+.overlay-item-text{
+    font-family: 'Kanit', sans-serif;
+    color: var(--green);
+    margin: 0;
+}
+
+.person-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.person-name{
+    font-family: 'Kanit', sans-serif;
+    color: var(--green);
+    margin: 0;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
 @media (max-width:768px) {
     .navbar-container{
         padding: 10px 20px 10px 20px;
+    }
+    .person-name{
+        display: none;
     }
 }

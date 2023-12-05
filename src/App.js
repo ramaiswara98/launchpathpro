@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router,Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router,Route, Routes} from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Project from './pages/Project/Project';
 import Quiz from './pages/Quiz/Quiz';
 import Summary from './pages/Summary/Summary';
+import VerificationEmail from './pages/VerificationEmail/VerificationEmail';
 
 function App() {
   return (
@@ -16,25 +17,31 @@ function App() {
     </Routes>
 
     <Routes>
-      <Route exact path='/login' element={<Login/>}/>
+      <Route path='/login' element={<Login/>}/>
     </Routes>
 
     <Routes>
-      <Route exact path='/sign-up' element={<SignUp/>}/>
+      <Route path='/sign-up' element={<SignUp/>}/>
     </Routes>
 
     <Routes>
-      <Route exact path='/dashboard' element={<Dashboard/>}/>
+      <Route path='/dashboard' element={<Dashboard/>}/>
     </Routes>
 
     <Routes>
-      <Route exact path='/project' element={<Project/>}/>
+      <Route path='/project' element={<Project/>}/>
     </Routes>
+
     <Routes>
-      <Route exact path='/quiz' element={<Quiz/>}/>
+      <Route path='/quiz' element={<Quiz/>}/>
     </Routes>
+
     <Routes>
-      <Route exact path='/summary' element={<Summary/>}/>
+      <Route path='/summary' element={<Summary/>}/>
+    </Routes>
+
+    <Routes>
+      <Route path='/verify-your-email' element={<VerificationEmail/>}/>
     </Routes>
 
    </Router>

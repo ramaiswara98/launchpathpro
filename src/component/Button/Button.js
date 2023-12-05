@@ -15,6 +15,9 @@ function Button(props) {
       if(type === 'alternate'){
         return 'var(--gray)'
       }
+      if(type === 'disable'){
+        return 'var(--gray)'
+      }
     }else{
       return 'var(--green)'
     }
@@ -29,6 +32,9 @@ function Button(props) {
       }
       if(type === 'alternate'){
         return 'var(--dark-blue)'
+      }
+      if(type === 'disable'){
+        return 'var(--pure-white)'
       }
     }else{
       return 'var(--pure-white)'

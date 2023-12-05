@@ -1,0 +1,33 @@
+.verification-email-container{
+    margin: auto;
+    margin-top: 40px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    background-color: var(--pure-white);
+}
+
+.verification-email-title{
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: var(--green);
+    margin: 0;
+}
+
+.verification-email-sub-title{
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: var(--dark-blue);
+    margin: 0;
+}
+
+.verification-email-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 250px;
+    margin-top: 20px;
+}

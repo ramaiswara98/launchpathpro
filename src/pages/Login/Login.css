@@ -6,6 +6,17 @@
     height: calc(100vh - 70px);
 }
 
+.login-alert{
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+    color: var(--red);
+}
+.login-alert span{
+    font-size: 18px;
+    color: var(--green);
+    cursor: pointer;
+}
+
 .login-button-container{
     margin-top: 20px;
 }
@@ -20,5 +31,10 @@
     .login-input-container{
         width: 60vw;
         margin-bottom: 20px;
+    }
+    .login-alert{
+        max-width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
