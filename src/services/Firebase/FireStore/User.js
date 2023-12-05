@@ -1,20 +1,12 @@
-import { collection, addDoc, setDoc, doc } from "firebase/firestore"; 
+import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore"; 
 import { db } from "../Firebase";
+
 export const addUser = (data) => {
   return new Promise(async(resolve, reject) => {
-    const {fullname, email, password,uid,emailVerified,type,feedback,projectQuota} = data;
+    const {uid} = data
     try {
         const userRef = doc(db, 'users',uid);
-        const docRef = await setDoc(userRef, {
-          fullname,
-          email,
-          password,
-          uid,
-          emailVerified,
-          type,
-          feedback,
-          projectQuota
-        });
+        const docRef = await setDoc(userRef, data);
         console.log(docRef)
         resolve(data)
       } catch (e) {
@@ -22,4 +14,24 @@ export const addUser = (data) => {
       }
   })
     
+}
+
+export const getCurrentUserFromFireStore= (uid) => {
+  return new Promise(async(resolve,reject)=> {
+    const userRef = doc(db, 'users',uid);
+    const docSnap = await getDoc(userRef)
+    if(docSnap.exists()){
+      if(docSnap.data().emailVerified){
+        resolve(docSnap.data());
+      }else{
+        const data=docSnap.data();
+        data.emailVerified=true;
+        addUser(data);
+        getCurrentUserFromFireStore(docSnap.data().uid)
+      }
+      
+    }else{
+      reject(null)
+    }
+  })
 }

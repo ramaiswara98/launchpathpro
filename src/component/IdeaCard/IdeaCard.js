@@ -1,10 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './IdeaCard.css'
 import IconPlus from '../../assets/icon/plus-circle.png'
 import IconLightBulb from '../../assets/icon/light-bulb.png'
 
-function IdeaCard({start, onClickStart}) {
+function IdeaCard({start, onClickStart,project}) {
+    const [completionSum, setCompletionSum] = useState(0);
+
+    useEffect(() => {
+        getCompletionSum();
+    },[])
+    const getCompletionSum = ()=> {
+        let sum = 0;
+        if(project !== undefined){
+            if(project.ideaGeneration !== undefined){
+                sum=(sum+1)
+                setCompletionSum(sum)
+            }
+            if(project.ideaValidation !== undefined){
+                sum=sum+1
+                setCompletionSum(sum)
+            }
+            if(project.marketResearch !== undefined){
+                sum=sum+1
+                setCompletionSum(sum)
+            }
+            if(project.businessPlan !== undefined){
+                sum=sum+1
+                setCompletionSum(sum)
+            }
+        }
+        
+    }
   return (
     <div className='idea-card-main'>
         {start?(
@@ -20,14 +47,14 @@ function IdeaCard({start, onClickStart}) {
                         <img src={IconLightBulb} alt='icon-light-bulb' className='icon-32'/>
                     </div>
                     <div className='idea-card-right-side'>
-                        <p className='idea-card-title'>Manusia Setengah Dewa apa</p>
+                        <p className='idea-card-title'>{project.ideaGeneration[0].answer}</p>
                         <div className='idea-card-indicator'>
-                            <span className='indicator-item'></span>
-                            <span className='indicator-item'></span>
-                            <span className='indicator-item'></span>
-                            <span className='indicator-item'></span>
+                            <span className={completionSum>0?'indicator-item active':'indicator-item'}></span>
+                            <span className={completionSum>1?'indicator-item active':'indicator-item'}></span>
+                            <span className={completionSum>2?'indicator-item active':'indicator-item'}></span>
+                            <span className={completionSum>3?'indicator-item active':'indicator-item'}></span>
                         </div>
-                        <p className='idea-card-indicator-text'>1 of 4 Completion</p>
+                        <p className='idea-card-indicator-text'>{completionSum} of 4 Completion</p>
                     </div>
                 </div>
                 <div className='idea-card-second-row'>

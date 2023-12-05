@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../Firebase";
+import { getCurrentUserFromFireStore } from "../FireStore/User";
 
 export const createNewUserWithEmailAndPassword = (data) => {
     return new Promise((resolve, reject) => {
@@ -53,9 +54,7 @@ export const loginUsingEmailAndPassword = (data) => {
 }
 
 export const checkCurrentUser = async(show) => {
-    const login  = await getAuth();
-    console.log(login)
-    console.log(auth.currentUser)
+    const login  = await auth;
     if(login.currentUser === null){
       window.location.href='/';
     }else{
@@ -66,4 +65,19 @@ export const checkCurrentUser = async(show) => {
       }
       
     }
+}
+
+export const getCurrentUser = () => {
+    return new Promise(async(resolve,reject)=> {
+        const currentUser = await auth;
+        const uid = currentUser.currentUser.uid;
+        getCurrentUserFromFireStore(uid).then((result) => {
+            resolve(result);
+        })
+        .catch((err) => {
+            reject(err);
+        })
+    })
+    
+    // return currentUser.currentUser
 }

@@ -71,6 +71,16 @@
     margin-bottom: 5px;
 }
 
+.indicator-item.active{
+    width: 30px;
+    height: 7px;
+    background-color: var(--green);
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .idea-card-indicator-text{
     font-family: 'Kanit', sans-serif;
     font-size: 10px;

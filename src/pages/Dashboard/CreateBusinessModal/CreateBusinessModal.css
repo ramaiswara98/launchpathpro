@@ -36,3 +36,23 @@
 .create-business-space{
     width: 10px;
 }
+.business-modal-alert{
+    font-family: 'Kanit', sans-serif;
+    font-size: 14px;
+    color: var(--red);
+}
+
+@media (max-width:768px) {
+
+    .create-business-input-container{
+        width: 250px;
+    }
+    .create-business-button-container{
+
+        width: 300px;
+    }
+    .create-business-content{
+        width: 300px;
+    }
+    
+}

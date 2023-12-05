@@ -4,13 +4,38 @@ import Button from '../../../component/Button/Button'
 import Input from '../../../component/Input/Input'
 import './CreateBusinessModal.css'
 
-function CreateBusinessModal({toggle, setBusinessName, setBusinessIdea, businessName, businessIdea}) {
+function CreateBusinessModal({toggle, setBusinessName, setBusinessIdea, businessName, businessIdea, handleStore}) {
     const [state,setState] = useState(0);
+    const [alert, setAlert] = useState('');
 
     const handleNextClick = () => {
         const currentState = state;
         if(currentState === 0){
-            setState(1);
+            if(businessName !== ''){
+                if(businessName.length < 3){
+                    setAlert(<p className='business-modal-alert'>Business Name must be more than 3 character</p>)
+                }else{
+                    setAlert('')
+                    setState(1);
+                }
+                
+            }else{
+                setAlert(<p className='business-modal-alert'>Business Name cannot be empty</p>)
+            }
+            
+        }
+        if(currentState === 1){
+            if(businessIdea !== ''){
+                if(businessIdea.length < 100){
+                    setAlert(<p className='business-modal-alert'>Business Idea must be more than 100 character</p>)
+                }else{
+                    setAlert('')
+                    handleStore();
+                }
+            }else{
+                setAlert(<p className='business-modal-alert'>Business Idea cannot be empty</p>)
+            }
+            
         }
     }
 
@@ -50,7 +75,7 @@ function CreateBusinessModal({toggle, setBusinessName, setBusinessIdea, business
     
    
     </div>
-    
+    {alert}
     <div className='create-business-button-container'>
     <Button
         type={'alternate'}
