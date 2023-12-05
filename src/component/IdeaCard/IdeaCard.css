@@ -1,0 +1,101 @@
+.idea-card-main{
+    margin: 10px 10px;
+}
+
+.idea-card-create-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--pure-white);
+    padding: 20px 20px;
+    width: 248px;
+    height: 129px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.idea-card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--pure-white);
+    padding: 10px 10px;
+    width: 268px;
+    height: 139px;
+    border-radius: 10px;
+}
+
+.idea-card-title{
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin-left: 10px;
+    margin: 0;
+}
+
+.idea-card-three-rows{
+    display: flex;
+    flex-direction: column;
+}
+
+.idea-card-first-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.idea-card-icon-container{
+    margin-right: 10px;
+}
+
+.idea-card-right-side{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.idea-card-indicator{
+    display: flex;
+    flex-direction: row;
+}
+
+.indicator-item{
+    width: 30px;
+    height: 7px;
+    background-color: var(--gray);
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.idea-card-indicator-text{
+    font-family: 'Kanit', sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin: 0;
+}
+
+.idea-card-second-row{
+    height: 2px;
+    background-color: var(--gray);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.idea-card-third-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.idea-card-circle{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--orange);
+    margin-right: 5px;
+}

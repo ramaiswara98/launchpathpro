@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './Button.css'
 
 function Button(props) {
+  const [color,setColor] = useState('var(--pure-white)')
 
   const checkButtonType = (type) => {
     if(type){
@@ -18,7 +19,21 @@ function Button(props) {
     }else{
       return 'var(--green)'
     }
-    
+  }
+  const checkButtonColor = (type) => {
+    if(type){
+      if(type === 'primary'){
+        return 'var(--pure-white)'
+      }
+      if(type === 'secondary'){
+        return 'var(--pure-white)'
+      }
+      if(type === 'alternate'){
+        return 'var(--dark-blue)'
+      }
+    }else{
+      return 'var(--pure-white)'
+    }
   }
   return (
     <div 
@@ -26,7 +41,7 @@ function Button(props) {
       style={{backgroundColor:checkButtonType(props.type)}}
       onClick={props.onClick}
     >
-        <p className='button-text'>{props.text}</p>
+        <p className='button-text' style={{color:checkButtonColor(props.type)}}>{props.text}</p>
     </div>
   )
 }

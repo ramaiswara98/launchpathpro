@@ -1,0 +1,19 @@
+.dashboard-container{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding: 10px 75px;
+}
+
+.dashboard-page{
+    background-color: var(--white);
+    height:calc(100vh - 70px);;
+}
+.dashboard-centering{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
