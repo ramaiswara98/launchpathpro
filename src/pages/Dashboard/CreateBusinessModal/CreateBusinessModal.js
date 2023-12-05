@@ -9,7 +9,7 @@ function CreateBusinessModal({toggle, setBusinessName, setBusinessIdea, business
 
     const handleNextClick = () => {
         const currentState = state;
-        if(state === 0){
+        if(currentState === 0){
             setState(1);
         }
     }

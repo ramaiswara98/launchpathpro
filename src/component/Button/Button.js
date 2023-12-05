@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './Button.css'
 
 function Button(props) {
-  const [color,setColor] = useState('var(--pure-white)')
 
   const checkButtonType = (type) => {
     if(type){

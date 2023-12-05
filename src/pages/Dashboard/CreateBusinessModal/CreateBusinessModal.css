@@ -28,8 +28,8 @@
 }
 .create-business-button-container{
     display: flex;
-    justify-content: end;
-    align-items: end;
+    justify-content: flex-end;
+    align-items: flex-end;
     padding: 10px 10px;
     width: 447px;
 }

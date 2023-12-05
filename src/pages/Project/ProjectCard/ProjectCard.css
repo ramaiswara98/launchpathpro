@@ -1,0 +1,71 @@
+.project-card-container{
+    width: 980px;
+    background-color: var(--pure-white);
+    padding: 10px 10px;
+}
+
+.project-card-title-text{
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+.project-card-second-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.section-card{
+    border: 2px solid var(--dark-blue);
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.section-card-first-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.section-card-icon-text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.section-card-icon{
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+}
+.section-card-icon-arrow{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.section-card-icon-arrow.active{
+   transform: rotate(90deg);
+}
+
+.project-card-indicator-item{
+    width: 126px;
+    height: 10px;
+    background-color: var(--gray);
+    margin-right: 5px;
+    border-radius: 10px;
+}
+.project-card-indicator-list{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+}
