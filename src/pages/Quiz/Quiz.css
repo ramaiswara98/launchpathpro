@@ -1,0 +1,38 @@
+.quiz-container{
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.quiz-section-text{
+    font-family: 'Kanit', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.quiz-indicator-container{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    
+}
+.quiz-indicator-item{
+    width: 230px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: var(--green);
+    margin-right: 10px;
+}
+
+.multiple-choice-text{
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.question-container{
+    height: calc(100vh - 170px);
+    display: flex;
+    align-items: center;
+}

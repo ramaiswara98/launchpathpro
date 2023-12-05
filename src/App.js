@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Project from './pages/Project/Project';
+import Quiz from './pages/Quiz/Quiz';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
 
     <Routes>
       <Route exact path='/project' element={<Project/>}/>
+    </Routes>
+    <Routes>
+      <Route exact path='/quiz' element={<Quiz/>}/>
     </Routes>
 
    </Router>
