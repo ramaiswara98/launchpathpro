@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Project from './pages/Project/Project';
 import Quiz from './pages/Quiz/Quiz';
+import Summary from './pages/Summary/Summary';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
     </Routes>
     <Routes>
       <Route exact path='/quiz' element={<Quiz/>}/>
+    </Routes>
+    <Routes>
+      <Route exact path='/summary' element={<Summary/>}/>
     </Routes>
 
    </Router>
