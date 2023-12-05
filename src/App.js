@@ -29,7 +29,7 @@ function App() {
     </Routes>
 
     <Routes>
-      <Route path='/project' element={<Project/>}/>
+      <Route path='/project/:projectId' element={<Project/>}/>
     </Routes>
 
     <Routes>

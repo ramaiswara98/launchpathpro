@@ -4,7 +4,7 @@ import './IdeaCard.css'
 import IconPlus from '../../assets/icon/plus-circle.png'
 import IconLightBulb from '../../assets/icon/light-bulb.png'
 
-function IdeaCard({start, onClickStart,project}) {
+function IdeaCard({start, onClickStart,project, onClickIdeaCard}) {
     const [completionSum, setCompletionSum] = useState(0);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ function IdeaCard({start, onClickStart,project}) {
              <p className='idea-card-title'>Create Business</p>
             </div>
         ):(
-            <div className='idea-card-container'>
+            <div className='idea-card-container' onClick={onClickIdeaCard}>
             <div className='idea-card-three-rows'>
                 <div className='idea-card-first-row'>
                     <div className='idea-card-icon-container'>

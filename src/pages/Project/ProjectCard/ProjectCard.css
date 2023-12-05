@@ -64,6 +64,14 @@
     margin-right: 5px;
     border-radius: 10px;
 }
+
+.project-card-indicator-item.active{
+    width: 126px;
+    height: 10px;
+    background-color: var(--green);
+    margin-right: 5px;
+    border-radius: 10px;
+}
 .project-card-indicator-list{
     display: flex;
     flex-direction: row;

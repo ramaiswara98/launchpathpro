@@ -1,14 +1,16 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../Firebase";
 
-export const addProject = async(project, user)=>{
-    const {uid} = user;
+export const addProject = (project, user)=>{
+    return new Promise(async(resolve, reject) => {
     try{
     const userRef = await addDoc(collection(db, 'projects'),project);
-    console.log(userRef.id);
+    resolve(userRef.id);
     }catch(e){
-        console.log(e)
+        reject(e)
     }
+    })
+    
 }
 
 export const getProjectByUID = (uid) => {
@@ -16,7 +18,6 @@ export const getProjectByUID = (uid) => {
         const q = query(collection(db,'projects'), where('uid','==',uid));
         const querySnapshot = await getDocs(q);
         const projects = [];
-        // if(querySnapshot.length > 0){
             querySnapshot.forEach((doc) => {
                 const result = doc.data();
                 const data = {
@@ -29,13 +30,21 @@ export const getProjectByUID = (uid) => {
     
                 }
                 projects.push(data);
-                // console.log(doc.id, "==>", doc.data());
             })
             resolve(projects)
-        // }else{
-        //     reject(null)
-        // }
        
     })
     
+}
+
+export const getProjectById = (projectId) => {
+    return new Promise(async(resolve,reject) => {
+        const docRef = doc(db,"projects",projectId);
+        const docSnap = await getDoc(docRef);
+        if(docSnap.exists()){
+            resolve(docSnap.data())
+        }else{
+            reject(null)
+        }
+    })
 }

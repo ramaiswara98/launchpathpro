@@ -1,21 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './Project.css'
 import Navbar from '../../component/NavBar/Navbar'
 import MessageCard from './MessageCard/MessageCard'
 import ProjectCard from './ProjectCard/ProjectCard'
+import { useParams } from 'react-router-dom'
+import { getProjectById } from '../../services/Firebase/FireStore/Project'
 
 function Project() {
+  const {projectId} = useParams();
+  const [project, setProject] = useState(null)
+
+  const getProjectByIds = (projectId) => {
+    getProjectById(projectId).then((result)=>{
+      setProject(result);
+    }).catch((err) => {
+      setProject(err);
+    })
+  }
+
+  useEffect(()=> {
+    getProjectByIds(projectId)
+  },[])
   return (
     <div className='project-main'>
         <Navbar/>
-        {/* <div className='project-'> */}
+        {project!==null&&(
           <div className='project-container'>
-            <MessageCard/>
-            <br/>
-            <ProjectCard/>
-          </div>
-        {/* </div> */}
+          <MessageCard />
+          <br/>
+          <ProjectCard project={project}/>
+        </div>
+        )}
+          
        
     </div>
   )

@@ -7,28 +7,20 @@ import Modal from "../../component/Modal/Modal";
 import CreateBusinessModal from "./CreateBusinessModal/CreateBusinessModal";
 import { checkCurrentUser, getCurrentUser } from "../../services/Firebase/FireBaseAuth/AuthWithEmail";
 import { addProject, getProjectByUID } from "../../services/Firebase/FireStore/Project";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const listProject = [
-    "New Project",
-    "Idea Keren",
-    "keren banget",
-    "awesome project",
-    "100M Idea",
-    "copy pates",
-  ];
+  const navigate = useNavigate();
   const [projectList,setProjectList] = useState([]);
   const [showPage, setShowPage] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
+  const [businessName, setBusinessName] = useState('');
+  const [businessIdea, setBusinessIdea] = useState('');
+  const [showModal, setShowModal] = useState(false);
   useEffect(()=> {
     getCurrentUserFromDB();
     checkCurrentUser(setShowPage)
   },[])
- 
-  const [businessName, setBusinessName] = useState('');
-  const [businessIdea, setBusinessIdea] = useState('');
-  const [showModal, setShowModal] = useState(false);
-
   const toggleModal = () => {
     setShowModal(!showModal);
   }
@@ -59,7 +51,9 @@ function Dashboard() {
       }],
       uid:currentUser.uid
     }
-    addProject(project, user)
+    addProject(project, user).then((result)=> {
+      navigate('/project/'+result)
+    })
   }
 
   const handleCreateBusinsess = () => {
@@ -76,10 +70,10 @@ function Dashboard() {
       <div className="dashboard-centering">
         <div className="dashboard-container">
           <IdeaCard start={true} onClickStart={handleCreateBusinsess}/>
-          {listProject.length > 0 ? (
+          {projectList.length > 0 ? (
             <>
               {projectList.map((project, index) => {
-                return <IdeaCard project={project}/>;
+                return <IdeaCard project={project} onClickIdeaCard={()=>{navigate('/project/'+project.projectId)}}/>;
               })}
             </>
           ) : (
