@@ -21,8 +21,12 @@
     width: 230px;
     height: 10px;
     border-radius: 10px;
-    background-color: var(--green);
+    background-color: var(--gray);
     margin-right: 10px;
+}
+
+.quiz-indicator-item.active{
+    background-color: var(--green);
 }
 
 .multiple-choice-text{

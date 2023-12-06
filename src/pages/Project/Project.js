@@ -29,7 +29,7 @@ function Project() {
           <div className='project-container'>
           <MessageCard />
           <br/>
-          <ProjectCard project={project}/>
+          <ProjectCard project={project} projectId={projectId}/>
         </div>
         )}
           

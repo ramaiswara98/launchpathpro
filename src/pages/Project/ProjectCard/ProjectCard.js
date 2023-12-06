@@ -5,7 +5,7 @@ import IconChecklist from '../../../assets/icon/checklist.png';
 import IconArrowRight from '../../../assets/icon/arrow-right.png';
 import Button from '../../../component/Button/Button';
 
-function ProjectCard({project} ) {
+function ProjectCard({project,projectId} ) {
     const [state, setState] = useState(null);
     const [completionSum, setCompletionSum] = useState(0);
 
@@ -73,6 +73,7 @@ function ProjectCard({project} ) {
                     <Button
                     type={'primary'}
                     text={'See Summary'}
+                    onClick={()=>{window.location.href='/summary/'+projectId+'/ea8423a2'}}
                     />
                 </div>
                 </>

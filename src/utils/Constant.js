@@ -9,5 +9,9 @@ export const Constant = {
     TAKE_ACTION:`To truly understand how our system can assist you, you need to experience it firsthand. If you're unwilling to seize this opportunity, it might explain any hesitation in starting your business. If you've reached this section without intending to click any button, perhaps this isn't the right fit for you. We wish you the best on your journey of dreaming about a business from your idea, while others take action to bring theirs to life.
 
     However, if you're ready to take action and try our system, remember to share your success story with us and others. You're the one who can inspire a thousand others who might just need a little push to begin their own journey`,
-    EMAIL_VERIFIED:`An email has been sent to verify your email address. If you haven't received it yet, you can click the 'Resend' button below. If you've already verified your email, please proceed by clicking the 'Login' button below.`
+    EMAIL_VERIFIED:`An email has been sent to verify your email address. If you haven't received it yet, you can click the 'Resend' button below. If you've already verified your email, please proceed by clicking the 'Login' button below.`,
+    ea8423a2:{id:'ideaGeneration',name:'Idea Generation'},
+    fff72284:'ideaValidation',
+    aff35e0:'marketResearch',
+    a486c9c1:'businessPlan'
 }
