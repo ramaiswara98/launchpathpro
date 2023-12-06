@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { db } from "../Firebase";
 
 export const addProject = (project, user)=>{
@@ -12,6 +12,20 @@ export const addProject = (project, user)=>{
     })
     
 }
+
+export const updateProject = (data,projectId) => {
+    return new Promise(async(resolve, reject) => {
+      try {
+          const projectRef = doc(db, 'projects',projectId);
+          const docRef = await setDoc(projectRef, data, {merge:true});
+          console.log(docRef)
+          resolve(data)
+        } catch (e) {
+          reject(e);
+        }
+    })
+      
+  }
 
 export const getProjectByUID = (uid) => {
     return new Promise(async(resolve, reject) => {

@@ -93,12 +93,24 @@ function ProjectCard({project,projectId} ) {
                 <div className='section-card-second-row'>
                     <p className='reguler-text' style={{color:'#000000'}}>Describing your idea as a consept</p>
                 </div>
-                <div>
-                    <Button
-                    type={'primary'}
-                    text={'See Summary'}
-                    />
-                </div>
+                {completionSum>1?(<>
+                    <div>
+                        <Button
+                        type={'primary'}
+                        text={'See Summary'}
+                        onClick={()=>{window.location.href='/summary/'+projectId+'/fff72284'}}
+                        />
+                    </div>
+                </>):(<>
+                    <div>
+                        <Button
+                        type={'primary'}
+                        text={'Validate Idea'}
+                        onClick={()=>{window.location.href='/quiz/'+projectId+'/ideaValidation'}}
+                        />
+                    </div>
+                </>)}
+                
                 </>
             }
         </div>

@@ -9,7 +9,7 @@
 
 .dashboard-page{
     background-color: var(--white);
-    height:calc(100vh - 70px);;
+    height:calc(100vh - 70px);
 }
 .dashboard-centering{
     display: flex;

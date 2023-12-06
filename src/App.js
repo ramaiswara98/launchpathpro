@@ -33,7 +33,7 @@ function App() {
     </Routes>
 
     <Routes>
-      <Route path='/quiz/:sectionId' element={<Quiz/>}/>
+      <Route path='/quiz/:projectId/:sectionId' element={<Quiz/>}/>
     </Routes>
 
     <Routes>

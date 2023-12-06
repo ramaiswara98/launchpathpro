@@ -11,7 +11,16 @@ export const Constant = {
     However, if you're ready to take action and try our system, remember to share your success story with us and others. You're the one who can inspire a thousand others who might just need a little push to begin their own journey`,
     EMAIL_VERIFIED:`An email has been sent to verify your email address. If you haven't received it yet, you can click the 'Resend' button below. If you've already verified your email, please proceed by clicking the 'Login' button below.`,
     ea8423a2:{id:'ideaGeneration',name:'Idea Generation'},
-    fff72284:'ideaValidation',
+    fff72284:{id:'ideaValidation',name: 'Idea Validation'},
     aff35e0:'marketResearch',
-    a486c9c1:'businessPlan'
+    a486c9c1:'businessPlan',
+    targetAudience:'Target Audience',
+    problemSolutionFit:'Problem-Solution Fit',
+    competitiveAnalysis:'Competitive Analysis',
+    intellectualProperty:'Intellectual Property',
+    regulatoryLegalConsideration:'Regulatory & Legal Consideration',
+    researchRequirement:'Research Requirement',
+    marketDemand:'Market Demand',
+    uniqueness:'Uniqueness',
+    feasibility:'Feasibility',
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./Dashboard.css";
 import Navbar from "../../component/NavBar/Navbar";
@@ -7,7 +8,7 @@ import Modal from "../../component/Modal/Modal";
 import CreateBusinessModal from "./CreateBusinessModal/CreateBusinessModal";
 import { checkCurrentUser, getCurrentUser } from "../../services/Firebase/FireBaseAuth/AuthWithEmail";
 import { addProject, getProjectByUID } from "../../services/Firebase/FireStore/Project";
-import { useNavigate } from "react-router-dom";
+import Loading from "../../component/Loading/Loading";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function Dashboard() {
   const [businessName, setBusinessName] = useState('');
   const [businessIdea, setBusinessIdea] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(()=> {
     getCurrentUserFromDB();
     checkCurrentUser(setShowPage)
@@ -33,6 +35,7 @@ function Dashboard() {
   const getProject = (uid) => {
     getProjectByUID(uid).then((result) => {
       setProjectList(result)
+      setLoading(false)
     })
     .catch((err)=>{
       
@@ -64,7 +67,8 @@ function Dashboard() {
   }
   return (
     <>
-    {showPage&&(
+    {!loading?(<>
+      {showPage&&(
       <div className="dashboard-page">
       <Navbar type={"login"}/>
       <div className="dashboard-centering">
@@ -95,6 +99,11 @@ function Dashboard() {
       </Modal>
     </div>
     )}
+    
+    </>):(<>
+    <Loading/>
+    </>)}
+    
     </>
     
   );

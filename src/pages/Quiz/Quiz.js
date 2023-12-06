@@ -5,12 +5,13 @@ import Navbar from '../../component/NavBar/Navbar'
 import Question from '../../component/Question/Question'
 import { getQuestions, getSubSection, getSubSubSection } from '../../services/Firebase/FireStore/Section'
 import { useParams } from 'react-router-dom'
+import Loading from '../../component/Loading/Loading'
+import { updateProject } from '../../services/Firebase/FireStore/Project'
 
 
 
 function Quiz() {
-  const [questions, setQuestions] = useState(["makan","makan","makan","makan","makan","makan","makan","makan"])
-  const {sectionId} = useParams();
+  const {sectionId,projectId} = useParams();
   const [sectionName, setSectionName] = useState('');
   const [subSectionName, setSubSectionName] = useState('');
   const [subSubSectionName, setSubSubSectionName] = useState('');
@@ -21,6 +22,10 @@ function Quiz() {
   const [subSubSectionState, setSubSubSectionState] = useState(0);
   const [questionState, setQuestionState] = useState(0)
   const [loading, setLoading] = useState(true);
+  const [answer, setAnswer] = useState('');
+  const [listAnswer, setListAnswer] = useState([]);
+  const [listAnswerSubSubSection, setListAnswerSubSubSection] = useState([]);
+  const [listAnswerSubSection, setListAnswerSubSection] = useState([]);
 
   const indicatorWidth = () => {
     const totalQuestions = listQuestion.length;
@@ -60,21 +65,73 @@ function Quiz() {
     }).catch((err) => console.log(err))
   }
 
+  const addAnswerToList = () => {
+    const currentAnswer = answer;
+      const arrayAnswer = listAnswer;
+      const currentQuestion = questionState;
+      arrayAnswer.push({
+        question:listQuestion[currentQuestion].question,
+        answer:currentAnswer
+      })
+      setListAnswer(arrayAnswer);
+      setAnswer('')
+  }
+
+  const addToSubSubSection = () => {
+    const subSubSection = {}
+    subSubSection[listSubSubSection[subSubSectionState]]=listAnswer
+    const arraySubSubSection = listAnswerSubSubSection;
+    arraySubSubSection.push(subSubSection);
+    setListAnswerSubSubSection(arraySubSubSection);
+    setListAnswer([]);
+  }
+
+  const addToSubSection = () => {
+    const subSection = {}
+    subSection[listSubSection[subSectionState]] = listAnswerSubSubSection;
+    const arraySubSection = listAnswerSubSection;
+    arraySubSection.push(subSection);
+    setListAnswerSubSection(arraySubSection);
+    setListAnswerSubSubSection([]);
+  }
+
+
   const handleNextClick = async() => {
     const currentQuestion = questionState;
     const questionLenght = listQuestion.length;
     if(currentQuestion+1 < questionLenght){
       setQuestionState(currentQuestion+1);
+      addAnswerToList();
     }else{
+      addAnswerToList();
+      addToSubSubSection();
       const currentSubSubSection = subSubSectionState;
       const subSubSectionLength = listSubSubSection.length;
       if(currentSubSubSection+1 < subSubSectionLength){
         await setSubSubSectionState(currentSubSubSection+1);
-        // await getQuestionData();
         setLoading(true);
         setQuestionState(0);
       }else{
-
+        addToSubSection();
+        
+        const currentSubSection = subSectionState;
+        const subSectionLength = listSubSection.length;
+        if(currentSubSection+1 < subSectionLength){
+          await setSubSectionState(currentSubSection+1);
+          await setSubSubSectionState(0);
+          setLoading(true);
+          setQuestionState(0);
+        }else{
+          const data={}
+          data[sectionId]=listAnswerSubSection
+          updateProject(data,projectId).then((result) => {
+            alert("Idea has been validate")
+          }).catch((err) => {
+            console.log(err)
+          })
+          
+          console.log(data);
+        }
       }
     }
   }
@@ -103,10 +160,13 @@ function Quiz() {
                 type={listQuestion[questionState].type} 
                 question={listQuestion[questionState]}
                 onClick = {handleNextClick}
+                value={answer}
+                onChange={setAnswer}
                 />
           </div>
         </div>
         )}
+        {loading&&(<Loading/>)}
         
     </div>
   )

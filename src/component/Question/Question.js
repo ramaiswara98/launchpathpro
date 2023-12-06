@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import './Question.css'
 import Button from '../Button/Button'
 
-function Question({type,question, onClick}) {
+function Question({type,question, onClick, value, onChange}) {
     const [selected,setSelected] = useState();
   return (
     <div className='question-component'>
@@ -20,7 +20,7 @@ function Question({type,question, onClick}) {
 
         {type === 'text-area' && (
             <div className='question-text-area'>
-                <textarea className='input' rows={8}/>
+                <textarea className='input' rows={8} value={value} onChange={(e)=>{onChange(e.target.value)}}/>
             </div>
         )}
 
@@ -29,7 +29,7 @@ function Question({type,question, onClick}) {
                 {/* {console.log(question)} */}
                 {question.options.map((options,index)=> {
                     return(
-                        <div className='multiple-choice-item' key={index} onClick={()=>{setSelected(index)}}>
+                        <div className='multiple-choice-item' key={index} onClick={()=>{setSelected(index);onChange(options.text)}}>
                             <div className='multiple-choice-circle'>
                                 {index==selected&&(
                                      <div className='multiple-choice-circle-inside'>
@@ -52,7 +52,7 @@ function Question({type,question, onClick}) {
             <Button
                 type={'primary'}
                 text={'Next'}
-                onClick={onClick}
+                onClick={()=>{onClick();setSelected('')}}
             />
         </div>
     </div>

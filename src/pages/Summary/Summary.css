@@ -69,3 +69,11 @@
 .space{
     width: 20px;
 }
+
+.sub-sub-section-title{
+    font-family: 'Kanit', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--green);
+    width: fit-content;
+}
