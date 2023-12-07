@@ -4,6 +4,7 @@ import './ProjectCard.css'
 import IconChecklist from '../../../assets/icon/checklist.png';
 import IconArrowRight from '../../../assets/icon/arrow-right.png';
 import Button from '../../../component/Button/Button';
+import { Constant } from '../../../utils/Constant';
 
 function ProjectCard({project,projectId} ) {
     const [state, setState] = useState(null);
@@ -11,6 +12,7 @@ function ProjectCard({project,projectId} ) {
 
     useEffect(() => {
         getCompletionSum();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const getCompletionSum = ()=> {
@@ -91,7 +93,7 @@ function ProjectCard({project,projectId} ) {
             {state === 1 && 
                 <>
                 <div className='section-card-second-row'>
-                    <p className='reguler-text' style={{color:'#000000'}}>Describing your idea as a consept</p>
+                    <p className='reguler-text' style={{color:'#000000'}}>{Constant.descIdeaValidation}</p>
                 </div>
                 {completionSum>1?(<>
                     <div>
@@ -125,14 +127,35 @@ function ProjectCard({project,projectId} ) {
             {state === 2 && 
                 <>
                 <div className='section-card-second-row'>
-                    <p className='reguler-text' style={{color:'#000000'}}>Describing your idea as a consept</p>
+                    <p className='reguler-text' style={{color:'#000000'}}>{Constant.descMarketResearch}</p>
                 </div>
-                <div>
-                    <Button
-                    type={'primary'}
-                    text={'See Summary'}
-                    />
-                </div>
+                {completionSum>2?(<>
+                    <div>
+                        <Button
+                        type={'primary'}
+                        text={'See Summary'}
+                        onClick={()=>{window.location.href='/summary/'+projectId+'/aff35e0'}}
+                        />
+                    </div>
+                </>):(<>
+                {completionSum<2?(<>
+                    <div>
+                        <Button
+                        type={'disable'}
+                        text={'Research Market'}
+                        />
+                    </div>
+                </>):(<>
+                    <div>
+                        <Button
+                        type={'primary'}
+                        text={'Research Market'}
+                        onClick={()=>{window.location.href='/quiz/'+projectId+'/marketResearch'}}
+                        />
+                    </div>
+                </>)}
+                   
+                </>)}
                 </>
             }
         </div>
@@ -147,14 +170,34 @@ function ProjectCard({project,projectId} ) {
             {state === 3 && 
                 <>
                 <div className='section-card-second-row'>
-                    <p className='reguler-text' style={{color:'#000000'}}>Describing your idea as a consept</p>
+                    <p className='reguler-text' style={{color:'#000000'}}>{Constant.descBusinessPlan}</p>
                 </div>
-                <div>
-                    <Button
-                    type={'primary'}
-                    text={'See Summary'}
-                    />
-                </div>
+                {completionSum>3?(<>
+                    <div>
+                        <Button
+                        type={'primary'}
+                        text={'See Summary'}
+                        onClick={()=>{window.location.href='/summary/'+projectId+'/a486c9c1'}}
+                        />
+                    </div>
+                </>):(<>
+                    {completionSum<3?(<>
+                    <div>
+                        <Button
+                        type={'disable'}
+                        text={'Start Planning'}
+                        />
+                    </div>
+                </>):(<>
+                    <div>
+                        <Button
+                        type={'primary'}
+                        text={'Start Planning'}
+                        onClick={()=>{window.location.href='/quiz/'+projectId+'/businessPlan'}}
+                        />
+                    </div>
+                </>)}
+                </>)}
                 </>
             }
         </div>

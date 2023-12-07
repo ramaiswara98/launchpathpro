@@ -61,10 +61,10 @@ function IdeaCard({start, onClickStart,project, onClickIdeaCard}) {
 
                 </div>
                 <div className='idea-card-third-row'>
-                    <div className='idea-card-circle'>
+                    <div className={completionSum>3?'idea-card-circle active':'idea-card-circle'}>
 
                     </div>
-                    <p className='idea-card-indicator-text'>Pending</p>
+                    <p className='idea-card-indicator-text'>{completionSum>3?'Ready To Launch':'Pending'}</p>
                 </div>
             </div>
         </div>

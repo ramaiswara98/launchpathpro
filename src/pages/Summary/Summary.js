@@ -12,7 +12,6 @@ import Loading from '../../component/Loading/Loading'
 function Summary() {
     const {projectId,sectionId} = useParams();
     const section = Constant[sectionId];
-    const [project, setProject] = useState();
     const [listData, setListData] = useState([]);
     const [currentSubSection, setCurrentSubSection] = useState(0)
     const [loading, setLoading] = useState(true);
@@ -20,31 +19,23 @@ function Summary() {
 
     useEffect(()=> {
         getProjectByIds(projectId);
-        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
-    // useEffect(() => {
-    //     getSubSubSection();
-    // },[currentSubSection])
 
     const getProjectByIds = async(projectId) => {
         getProjectById(projectId).then((result)=>{
-          setProject(result);
           getListData(result);
-          
-        
           setLoading(false);
         }).catch((err) => {
-          setProject(err);
         })
       }
 
       const getListData = (dataProject) => {
         if(section.id === 'ideaGeneration'){
             const data = dataProject[section.id];
-            console.log(dataProject[section.id])
             setListData(data);
-        }else if(section.id === 'ideaValidation'){
+        }else{
             const data = dataProject[section.id];
             setListData(data);
             getSubSubSection(0,data);
@@ -55,13 +46,11 @@ function Summary() {
       const getSubSubSection = (index,listDatas) => {
         const currentSubSectionId = Object.keys(listDatas[index])[0];
         const subSubSectionList = listDatas[index][currentSubSectionId];
-        console.log(subSubSectionList)
         setCurrentSubSUbSectionList(subSubSectionList);
       }
       const getSubSubSectionManual = (index) => {
         const currentSubSectionId = Object.keys(listData[index])[0];
         const subSubSectionList = listData[index][currentSubSectionId];
-        console.log(subSubSectionList)
         setCurrentSubSUbSectionList(subSubSectionList);
       }
 
@@ -87,10 +76,12 @@ function Summary() {
             </>):(<></>)}
             
             <div className='summary-card-list'>
-                {sectionId === 'ideaGeneration'&&(<>
+                {section.id === 'ideaGeneration'&&(<>
+                
                     {listData.length>0&&(
                         <>
                         {listData.map((data,index) => {
+                            
                             return(
                                 <SummaryCard data={data}/>
                             )
@@ -99,7 +90,7 @@ function Summary() {
                     )}
                     </>
                 )}
-                {sectionId !== 'ideaGeneration'&&(
+                {section.id !== 'ideaGeneration'&&(
                     <>
                     {currentSubSubSectionList.length>0&&(
                         <>

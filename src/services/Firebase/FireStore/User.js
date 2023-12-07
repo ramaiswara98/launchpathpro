@@ -1,4 +1,4 @@
-import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore"; 
+import { setDoc, doc, getDoc } from "firebase/firestore"; 
 import { db } from "../Firebase";
 
 export const addUser = (data) => {
@@ -7,6 +7,20 @@ export const addUser = (data) => {
     try {
         const userRef = doc(db, 'users',uid);
         const docRef = await setDoc(userRef, data);
+        console.log(docRef)
+        resolve(data)
+      } catch (e) {
+        reject(e);
+      }
+  })
+    
+}
+
+export const updateUser = (uid,data) => {
+  return new Promise(async(resolve, reject) => {
+    try {
+        const userRef = doc(db, 'users',uid);
+        const docRef = await setDoc(userRef, data,{merge:true});
         console.log(docRef)
         resolve(data)
       } catch (e) {

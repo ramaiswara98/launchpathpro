@@ -4,7 +4,7 @@ import './Quiz.css'
 import Navbar from '../../component/NavBar/Navbar'
 import Question from '../../component/Question/Question'
 import { getQuestions, getSubSection, getSubSubSection } from '../../services/Firebase/FireStore/Section'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Loading from '../../component/Loading/Loading'
 import { updateProject } from '../../services/Firebase/FireStore/Project'
 
@@ -26,6 +26,9 @@ function Quiz() {
   const [listAnswer, setListAnswer] = useState([]);
   const [listAnswerSubSubSection, setListAnswerSubSubSection] = useState([]);
   const [listAnswerSubSection, setListAnswerSubSection] = useState([]);
+  const [alerts, setAlerts] = useState('');
+  const [submit, setSubmit] = useState(false);
+  const navigate = useNavigate();
 
   const indicatorWidth = () => {
     const totalQuestions = listQuestion.length;
@@ -37,7 +40,7 @@ function Quiz() {
 
   useEffect(() => {
     getQuestionData();
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[subSubSectionState])
 
   const getQuestionData = async() => {
@@ -46,18 +49,15 @@ function Quiz() {
       const subSection = result.subSection;
       setSectionName(sectionName)
       setListSubSection(subSection);
-      console.log(result)
       getSubSubSection(subSection[subSectionState]).then((res) => {
         const subSectionName = res.name;
         const subSubSection = res.subSubSection;
         setSubSectionName(subSectionName)
         setListSubSubSection(subSubSection)
-        console.log(res)
         getQuestions(subSubSection[subSubSectionState]).then((quest)=> {
           const subSubSectionName = quest.name;
           const questions = quest.questions;
           setSubSubSectionName(subSubSectionName);
-          console.log(quest)
           setListQuestion(questions);
           setLoading(false)
         }).catch((err) => console.log(err))
@@ -97,7 +97,8 @@ function Quiz() {
 
 
   const handleNextClick = async() => {
-    const currentQuestion = questionState;
+    if(answer !== ''){
+      const currentQuestion = questionState;
     const questionLenght = listQuestion.length;
     if(currentQuestion+1 < questionLenght){
       setQuestionState(currentQuestion+1);
@@ -122,18 +123,22 @@ function Quiz() {
           setLoading(true);
           setQuestionState(0);
         }else{
+          setSubmit(true)
           const data={}
           data[sectionId]=listAnswerSubSection
           updateProject(data,projectId).then((result) => {
-            alert("Idea has been validate")
+            setSubmit(false);
+            navigate('/project/'+projectId)
           }).catch((err) => {
             console.log(err)
           })
-          
-          console.log(data);
         }
       }
     }
+    }else{
+      setAlerts(<p className='business-modal-alert'>The answer cannot be empty</p>)
+    }
+    
   }
 
   return (
@@ -162,6 +167,8 @@ function Quiz() {
                 onClick = {handleNextClick}
                 value={answer}
                 onChange={setAnswer}
+                alerts={alerts}
+                submitState={submit}
                 />
           </div>
         </div>

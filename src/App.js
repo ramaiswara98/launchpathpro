@@ -8,41 +8,34 @@ import Project from './pages/Project/Project';
 import Quiz from './pages/Quiz/Quiz';
 import Summary from './pages/Summary/Summary';
 import VerificationEmail from './pages/VerificationEmail/VerificationEmail';
+import AddQuestion from './pages/AddQuestion/AddQuestion';
+import useFirebaseAuth from './hook/useFirebaseAuth';
 
 function App() {
+  const {type} = useFirebaseAuth();
   return (
    <Router>
-    <Routes>
+    {type === 'home'?(
+      <Routes>
+        <Route exact path='/' element={<HomePage/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/sign-up' element={<SignUp/>}/>
+        <Route path='/add-question' element={<AddQuestion/>}/>
+        <Route path='/verify-your-email' element={<VerificationEmail/>}/>
+    </Routes>
+    ):(
+      <Routes>
       <Route exact path='/' element={<HomePage/>}/>
-    </Routes>
-
-    <Routes>
       <Route path='/login' element={<Login/>}/>
-    </Routes>
-
-    <Routes>
       <Route path='/sign-up' element={<SignUp/>}/>
-    </Routes>
-
-    <Routes>
       <Route path='/dashboard' element={<Dashboard/>}/>
-    </Routes>
-
-    <Routes>
       <Route path='/project/:projectId' element={<Project/>}/>
-    </Routes>
-
-    <Routes>
       <Route path='/quiz/:projectId/:sectionId' element={<Quiz/>}/>
-    </Routes>
-
-    <Routes>
       <Route path='/summary/:projectId/:sectionId' element={<Summary/>}/>
-    </Routes>
-
-    <Routes>
       <Route path='/verify-your-email' element={<VerificationEmail/>}/>
     </Routes>
+    )}
+   
 
    </Router>
   );

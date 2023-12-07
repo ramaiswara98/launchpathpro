@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 
 
 import './Navbar.css'
@@ -8,28 +8,14 @@ import Person from '../../assets/images/person.png'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../services/Firebase/Firebase'
 import { signOut } from 'firebase/auth'
+import useFirebaseAuth from '../../hook/useFirebaseAuth'
 
 function Navbar() {
 
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
-  const [type, setType] = useState();
-  const [name, setName] = useState('');
+  const {user, type} = useFirebaseAuth();
 
-  useEffect(()=> { 
-    const login  = auth;
-    if(login.currentUser === null){
-      setType('home')
-    }else{
-      if(login.currentUser.emailVerified){
-        setType('login')
-        setName(login.currentUser.displayName)
-      }else{
-        setType('home')
-      }
-      
-    }
-  },[])
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -51,7 +37,7 @@ function Navbar() {
       return(
         <div className='person-container' onClick={toggleDropdown}>
             <img src={Person} alt='person-icon' className='person-icon' />
-            <p className='person-name'>{name}</p>
+            <p className='person-name'>{user.displayName}</p>
             {showDropdown && (
               <div className='overlay' id='myDropdown'>
                 <div className='overlay-item'>

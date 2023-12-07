@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import './Question.css'
 import Button from '../Button/Button'
 
-function Question({type,question, onClick, value, onChange}) {
+function Question({type,question, onClick, value, onChange,alerts,submitState}) {
     const [selected,setSelected] = useState();
   return (
     <div className='question-component'>
@@ -21,6 +21,7 @@ function Question({type,question, onClick, value, onChange}) {
         {type === 'text-area' && (
             <div className='question-text-area'>
                 <textarea className='input' rows={8} value={value} onChange={(e)=>{onChange(e.target.value)}}/>
+                {alerts}
             </div>
         )}
 
@@ -31,7 +32,7 @@ function Question({type,question, onClick, value, onChange}) {
                     return(
                         <div className='multiple-choice-item' key={index} onClick={()=>{setSelected(index);onChange(options.text)}}>
                             <div className='multiple-choice-circle'>
-                                {index==selected&&(
+                                {index===selected&&(
                                      <div className='multiple-choice-circle-inside'>
 
                                      </div>
@@ -50,9 +51,9 @@ function Question({type,question, onClick, value, onChange}) {
         
         <div className='question-button-container'>
             <Button
-                type={'primary'}
-                text={'Next'}
-                onClick={()=>{onClick();setSelected('')}}
+                type={submitState?'disable':'primary'}
+                text={submitState?'Submitting...':'Next'}
+                onClick={submitState?()=>{}:()=>{onClick();setSelected('')}}
             />
         </div>
     </div>

@@ -224,6 +224,7 @@
         padding-top: 30px;
         padding-bottom: 30px;
         flex-direction: column;
+        max-width: 100vw;
     }
     
     .third-section{
@@ -236,13 +237,13 @@
     }
     
     .clock-ticking-container{
-        width: 400px;
+        width: 380px;
         display: flex;
         flex-direction: column;
     }
     
     .dare-you-container{
-        width: 400px;
+        width: 380px;
         display: flex;
         flex-direction: column;
     }
@@ -258,7 +259,7 @@
     }
     
     .andrew-container{
-        width: 400px;
+        width: 380px;
         display: flex;
         flex-direction: column;
         margin-top: 50px;
@@ -275,7 +276,7 @@
         font-weight: bold;
         color: var(--green);
         margin: 0;
-        width: 400px;
+        width: 380px;
         margin: 0;
         line-height: 1;
     }
@@ -289,8 +290,8 @@
     }
     
     .image-section{
-        width: 400px;
-        height: 400px;
+        width: 300px;
+        height: 300px;
         order: 1;
     }
 }

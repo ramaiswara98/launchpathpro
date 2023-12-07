@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../Firebase";
 import { getCurrentUserFromFireStore } from "../FireStore/User";
 
@@ -67,10 +67,8 @@ export const checkCurrentUser = async(show) => {
     }
 }
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (uid) => {
     return new Promise(async(resolve,reject)=> {
-        const currentUser = await auth;
-        const uid = currentUser.currentUser.uid;
         getCurrentUserFromFireStore(uid).then((result) => {
             resolve(result);
         })

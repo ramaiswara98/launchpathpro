@@ -11,6 +11,16 @@
     width: 100px;
     height: 100px;
     margin-top: -20px;
+    animation: moveUpDown 2s ease-in-out infinite alternate;
+}
+
+@keyframes moveUpDown {
+    from{
+        transfrom:translateY(-20px)
+    }
+    to{
+        transform: translateY(-25px);
+    }
 }
 
 .icon-close{

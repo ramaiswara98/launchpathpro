@@ -4,10 +4,9 @@ import Button from '../../../component/Button/Button'
 import Input from '../../../component/Input/Input'
 import './CreateBusinessModal.css'
 
-function CreateBusinessModal({toggle, setBusinessName, setBusinessIdea, businessName, businessIdea, handleStore}) {
+function CreateBusinessModal({toggle, setBusinessName, setBusinessIdea, businessName, businessIdea, handleStore,loading, setLoading}) {
     const [state,setState] = useState(0);
     const [alert, setAlert] = useState('');
-
     const handleNextClick = () => {
         const currentState = state;
         if(currentState === 0){
@@ -29,6 +28,7 @@ function CreateBusinessModal({toggle, setBusinessName, setBusinessIdea, business
                 if(businessIdea.length < 100){
                     setAlert(<p className='business-modal-alert'>Business Idea must be more than 100 character</p>)
                 }else{
+                    setLoading(true);
                     setAlert('')
                     handleStore();
                 }
@@ -85,11 +85,19 @@ function CreateBusinessModal({toggle, setBusinessName, setBusinessIdea, business
     <div className='create-business-space'>
 
     </div>
-    <Button
+    {loading?(<>
+        <Button
+        type={'disable'}
+        text={'Loading...'}
+    />
+    </>):(<>
+        <Button
         type={'primary'}
         text={state===0?'Next':'Create Business'}
         onClick={handleNextClick}
     />
+    </>)}
+    
 
     </div>
     

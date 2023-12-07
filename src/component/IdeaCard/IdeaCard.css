@@ -110,3 +110,11 @@
     background-color: var(--orange);
     margin-right: 5px;
 }
+
+.idea-card-circle.active{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--green);
+    margin-right: 5px;
+}

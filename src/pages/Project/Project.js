@@ -21,13 +21,14 @@ function Project() {
 
   useEffect(()=> {
     getProjectByIds(projectId)
+    // eslint-disable-next-line
   },[])
   return (
     <div className='project-main'>
         <Navbar/>
         {project!==null&&(
           <div className='project-container'>
-          <MessageCard />
+          <MessageCard project={project}/>
           <br/>
           <ProjectCard project={project} projectId={projectId}/>
         </div>
