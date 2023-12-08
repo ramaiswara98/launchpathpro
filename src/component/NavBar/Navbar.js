@@ -14,7 +14,7 @@ function Navbar() {
 
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
-  const {user, type} = useFirebaseAuth();
+  const {user, type, userFireStore} = useFirebaseAuth();
 
 
   const toggleDropdown = () => {
@@ -40,14 +40,22 @@ function Navbar() {
             <p className='person-name'>{user.displayName}</p>
             {showDropdown && (
               <div className='overlay' id='myDropdown'>
+                
                 <div className='overlay-item'>
                   <p className='overlay-item-text' onClick={()=>goTo('/dashboard')}>Dashboard</p>
                 </div>
-                <div className='overlay-item'>
-                  <p className='overlay-item-text'>Upgrade</p>
+                {userFireStore!==null && userFireStore.type === 'free' && (
+                  <div className='overlay-item'>
+                  <p className='overlay-item-text' onClick={()=>goTo('/pricing')}>Upgrade</p>
                 </div>
+                )}
+                
                 <div className='overlay-item' onClick={handleLogOut}>
                   <p className='overlay-item-text'>Log Out</p>
+                </div>
+                <hr/>
+                <div className='overlay-item'>
+                  <p className='overlay-item-text' onClick={()=>goTo('/dashboard')}>{userFireStore !== null ? userFireStore.projectQuota+' Token':''}</p>
                 </div>
               </div>
             )}

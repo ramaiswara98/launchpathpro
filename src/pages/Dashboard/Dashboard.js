@@ -12,6 +12,9 @@ import Loading from "../../component/Loading/Loading";
 import useFirebaseAuth from "../../hook/useFirebaseAuth";
 import { updateUser } from "../../services/Firebase/FireStore/User";
 
+import Alert from "../../component/Modal/Alert/Alert";
+import { Constant } from "../../utils/Constant";
+
 function Dashboard() {
   const navigate = useNavigate();
   const [projectList,setProjectList] = useState([]);
@@ -23,6 +26,8 @@ function Dashboard() {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [buttonState,setButtonState] = useState(false);
+  const [showTokenAlert, setShowTokenAlert] =useState(false);
+
   useEffect(()=> {
     if(user !== null){
       getCurrentUserFromDB(user.uid);
@@ -73,10 +78,17 @@ function Dashboard() {
     })
   }
 
+  const toggleShowTokenModal = () => {
+    const currentState = showTokenAlert;
+    setShowTokenAlert(!currentState);
+  }
+
   const handleCreateBusinsess = () => {
     const quota = currentUser.projectQuota;
     if(quota>0){
       toggleModal();
+    }else{
+      toggleShowTokenModal();
     }
   }
   return (
@@ -113,6 +125,15 @@ function Dashboard() {
         setLoading = {setButtonState}
        />
       </Modal>
+
+        <Alert 
+          show={showTokenAlert}
+          closeButton={toggleShowTokenModal}
+          text={Constant.alertToken}
+          primaryButton={{text:'Upgrade',handle:()=>{window.location.href='/pricing'}}}
+          secondaryButton={{text:'Submit Feedback',handle:()=>{}}}
+          
+          />
     </div>
     )}
     

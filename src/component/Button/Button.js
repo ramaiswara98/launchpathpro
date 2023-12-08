@@ -43,10 +43,10 @@ function Button(props) {
   return (
     <div 
       className='button-container' 
-      style={{backgroundColor:checkButtonType(props.type)}}
+      style={{backgroundColor:checkButtonType(props.type), width:props.width?(props.width-40):'fit-content'}}
       onClick={props.onClick}
     >
-        <p className='button-text' style={{color:checkButtonColor(props.type)}}>{props.text}</p>
+        <p className='button-text' style={{color:checkButtonColor(props.type),textAlign:'center'}}>{props.text}</p>
     </div>
   )
 }

@@ -76,7 +76,8 @@ export const Constant = {
     walkingBaby:`Congratulations! Your baby is confidently taking its first steps. Let's keep fostering its progress!`,
     descIdeaValidation:`Validate Your Vision: Our Idea Validation feature asks targeted questions to refine and test your idea. Get tailored guidance to assess market fit and enhance your concept's potential for success`,
     descMarketResearch:`Explore Market Landscapes: Dive into our Market Research feature, guiding you through strategic questions to uncover valuable insights for your idea. Elevate your understanding of market dynamics and fine-tune your concepts for success.`,
-    descBusinessPlan:`Blueprint for Success: Our Business Plan tool is your roadmap from idea to reality. By asking targeted questions, it guides you in formulating a comprehensive business plan, turning your vision into a strategic success story.`
+    descBusinessPlan:`Blueprint for Success: Our Business Plan tool is your roadmap from idea to reality. By asking targeted questions, it guides you in formulating a comprehensive business plan, turning your vision into a strategic success story.`,
+    alertToken:`Your run out of Project Token, Upgrade to our Pro plan or submit feedback through our form to receive additional tokens.`
 
 
 

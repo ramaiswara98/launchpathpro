@@ -10,6 +10,7 @@ import Summary from './pages/Summary/Summary';
 import VerificationEmail from './pages/VerificationEmail/VerificationEmail';
 import AddQuestion from './pages/AddQuestion/AddQuestion';
 import useFirebaseAuth from './hook/useFirebaseAuth';
+import Pricing from './pages/Pricing/Pricing';
 
 function App() {
   const {type} = useFirebaseAuth();
@@ -33,6 +34,7 @@ function App() {
       <Route path='/quiz/:projectId/:sectionId' element={<Quiz/>}/>
       <Route path='/summary/:projectId/:sectionId' element={<Summary/>}/>
       <Route path='/verify-your-email' element={<VerificationEmail/>}/>
+      <Route path='/pricing' element={<Pricing/>}/>
     </Routes>
     )}
    

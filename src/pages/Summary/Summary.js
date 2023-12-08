@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom'
 import { Constant } from '../../utils/Constant'
 import { getProjectById } from '../../services/Firebase/FireStore/Project'
 import Loading from '../../component/Loading/Loading'
+import { PDFDownloadLink } from '@react-pdf/renderer'
+import PdfView from '../../component/PdfView/PdfView'
 
 function Summary() {
     const {projectId,sectionId} = useParams();
@@ -16,6 +18,8 @@ function Summary() {
     const [currentSubSection, setCurrentSubSection] = useState(0)
     const [loading, setLoading] = useState(true);
     const [currentSubSubSectionList, setCurrentSubSUbSectionList] = useState([]);
+    const [blobs, setBlobs] = useState();
+    const [pdfReady,setPdfReady] = useState(false);
 
     useEffect(()=> {
         getProjectByIds(projectId);
@@ -53,7 +57,28 @@ function Summary() {
         const subSubSectionList = listData[index][currentSubSectionId];
         setCurrentSubSUbSectionList(subSubSectionList);
       }
+    
+    const handleDownloadPDF = () => {
+        if(pdfReady){
+            handleDownload();
+        }else{
 
+        }
+        
+    }
+
+    const handleDownload = () => {
+        const blobUrl = window.URL.createObjectURL(blobs);
+    
+        const anchorElement = document.createElement('a');
+        anchorElement.href = blobUrl;
+        anchorElement.download = section.name+'.pdf'; // Replace 'myFile.pdf' with the desired filename
+    
+        anchorElement.click();
+    
+        window.URL.revokeObjectURL(blobUrl);
+      };
+    
   return (
     <div className='summary-page'>
         <Navbar/>
@@ -117,6 +142,7 @@ function Summary() {
                 <Button
                     type={'alternate'}
                     text={'Retake'}
+                    onClick={()=>window.location.href='/quiz/'+projectId+'/'+section.id}
                 />
                 <div className='space'>
 
@@ -124,7 +150,17 @@ function Summary() {
                 <Button
                     type={'primary'}
                     text={'Download as PDF'}
+                    onClick={handleDownloadPDF}
                 />
+                <div style={{display:'none'}}>
+                    <PDFDownloadLink id='button1' document={<PdfView project={listData} section={section.name}/>} fileName='myNewPDF.pdf' >
+                        {({blob, url, loading, error}) => {
+                            setBlobs(blob)
+                            setPdfReady(!loading);
+                            
+                        }}
+                    </PDFDownloadLink>
+                </div>
             </div>
            
         </div>

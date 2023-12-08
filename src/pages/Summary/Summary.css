@@ -65,6 +65,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 20px;
+    margin-bottom: 30px;
 }
 .space{
     width: 20px;
