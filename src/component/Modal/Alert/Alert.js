@@ -9,7 +9,7 @@ function Alert({show, closeButton, primaryButton, secondaryButton,text}) {
     <Modal
         show={show}
     >
-        <div>
+        <div className='alert-container'>
           <div className='alert-close-button-container'>
             <img src={IconClose} alt="icon-close" className='alert-close-button' onClick={()=>{closeButton()}}/>
           </div>

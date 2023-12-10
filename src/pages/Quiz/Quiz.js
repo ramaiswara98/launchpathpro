@@ -98,6 +98,7 @@ function Quiz() {
 
   const handleNextClick = async() => {
     if(answer !== ''){
+      setAlerts('')
       const currentQuestion = questionState;
     const questionLenght = listQuestion.length;
     if(currentQuestion+1 < questionLenght){

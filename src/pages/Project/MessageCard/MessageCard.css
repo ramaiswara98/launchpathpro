@@ -51,3 +51,11 @@
     font-weight: bold;
 }
 
+@media (max-width:480px) {
+    .message-card-container{
+        width: 380px;
+        padding: 10px 10px;
+        
+    }
+}
+

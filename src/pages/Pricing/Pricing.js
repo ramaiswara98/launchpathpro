@@ -33,6 +33,7 @@ function Pricing() {
                     newFeature={true}
                     retake={true}
                     buy={true}
+                    buyHandle={()=>{window.location.href="https://secure.2checkout.com/checkout/buy?merchant=254784758805&tpl=one-column&prod=ProPlan&qty=1"}}
                 />
                 <PricingCard
                     title={"Visionary"}
@@ -43,6 +44,7 @@ function Pricing() {
                     newFeature={true}
                     retake={true}
                     buy={true}
+                    buyHandle={()=>{window.location.href="https://secure.2checkout.com/checkout/buy?merchant=254784758805&tpl=default&prod=visionaryPlan&qty=1"}}
                 />
             </div>
         </div>

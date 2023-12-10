@@ -24,4 +24,7 @@
         max-height: 100%;
         padding: 10px 75px;
     }
+    .dashboard-centering{
+       width: 400px;
+    }
 }

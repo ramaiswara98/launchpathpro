@@ -77,3 +77,17 @@
     flex-direction: row;
     margin-left: 20px;
 }
+
+@media (max-width:480px) {
+    .project-card-container{
+        width: 380px;
+
+    }
+    .project-card-indicator-item{
+        width: 30px;
+    }
+    
+    .project-card-indicator-item.active{
+        width: 30px;
+    }
+}

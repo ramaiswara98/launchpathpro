@@ -9,6 +9,7 @@ function IdeaCard({start, onClickStart,project, onClickIdeaCard}) {
 
     useEffect(() => {
         getCompletionSum();
+        // eslint-disable-next-line
     },[])
     const getCompletionSum = ()=> {
         let sum = 0;

@@ -5,7 +5,7 @@ import CheckList from '../../../assets/icon/checklist.png'
 import Close from '../../../assets/icon/close.png'
 import Button from '../../../component/Button/Button'
 
-function PricingCard({price, title, duration, project, retake, download,newFeature,buy}) {
+function PricingCard({price, title, duration, project, retake, download,newFeature,buy, buyHandle}) {
   return (
     <div className='pricing-card'>
         <div className='pricing-card-title-container'>
@@ -53,6 +53,8 @@ function PricingCard({price, title, duration, project, retake, download,newFeatu
                 type={'primary'}
                 text={'Buy'}
                 width={200}
+                onClick={buyHandle}
+
             />
             )}
             

@@ -8,7 +8,6 @@ export const getAllSection = async() => {
         const querySnapshot = await getDocs(q);
         const sections = [];
             querySnapshot.forEach((doc) => {
-                const result = doc.id;
                 sections.push(doc.id);
             })
             resolve(sections)
