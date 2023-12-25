@@ -6,6 +6,7 @@ import MessageCard from './MessageCard/MessageCard'
 import ProjectCard from './ProjectCard/ProjectCard'
 import { useParams } from 'react-router-dom'
 import { getProjectById } from '../../services/Firebase/FireStore/Project'
+import AICard from './AICard/AICard'
 
 function Project() {
   const {projectId} = useParams();
@@ -29,6 +30,8 @@ function Project() {
         {project!==null&&(
           <div className='project-container'>
           <MessageCard project={project}/>
+          <br/>
+          <AICard projectId={projectId}/>
           <br/>
           <ProjectCard project={project} projectId={projectId}/>
         </div>
