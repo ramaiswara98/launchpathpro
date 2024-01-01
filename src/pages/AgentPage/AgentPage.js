@@ -6,6 +6,8 @@ import BabyMike from '../../assets/images/baby-mike.png'
 import { useParams } from 'react-router-dom'
 import { getProjectById } from '../../services/Firebase/FireStore/Project'
 import useFirebaseAuth from '../../hook/useFirebaseAuth'
+import { checkUserPlan } from '../../utils/Subscribe'
+import Loading from '../../component/Loading/Loading'
 
 function AgentPage() {
     const {projectId} = useParams();
@@ -13,11 +15,10 @@ function AgentPage() {
     const {user, type, userFireStore} = useFirebaseAuth();
     const freeList = ["opinion"];
     const dreamerList = ["opinion","swot","potentialMarket"];
-    const founderList = ["opinion","swot", "potentialMarket", "targetAudience","userPersona","potentialCompetitior"]
-
+    const founderList = ["opinion","swot", "potentialMarket", "targetAudience","userPersona","competitor"]
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         getProject();
-        console.log(userFireStore);
     },[])
 
     const getProject = () => {
@@ -28,16 +29,29 @@ function AgentPage() {
         })
     }
 
-    const generateAdvice = (advice) => {
-        if(userFireStore.type === "free"){
+    const generateAdvice = async(advice) => {
+        const currentPlan = userFireStore.plan;
+        const expireDate = userFireStore?.plan_expire_date?userFireStore.plan_expire_date:null;
+        console.log(expireDate)
+        const plan = await checkUserPlan(currentPlan, expireDate);
+        console.log(plan);
+        console.log(expireDate);
+        if(plan === 0){
             if(freeList.includes(advice)){
                 window.location.href = `/generate/${advice}/${projectId}`
             }else{
                 alert("Your current plan is not include this feature")
             }
         }
+        if(plan === null){
+            if(freeList.includes(advice)){
+                window.location.href = `/generate/${advice}/${projectId}`
+            }else{
+                alert("Your previous plan has been expired, please renew it to access all the feature")
+            }
+        }
 
-        if(userFireStore.type === "dreamer"){
+        if(plan === 1){
             if(dreamerList.includes(advice)){
                 window.location.href = `/generate/${advice}/${projectId}`
             }else{
@@ -45,7 +59,7 @@ function AgentPage() {
             }
         }
 
-        if(userFireStore.type === "founder"){
+        if(plan === 2){
             if(founderList.includes(advice)){
                 window.location.href = `/generate/${advice}/${projectId}`
             }else{
@@ -60,7 +74,9 @@ function AgentPage() {
   return (
     <div className='main-agent-page'>
         <Navbar/>
-        <div className='agent-page-container'>
+        {userFireStore !== null? (
+            <>
+            <div className='agent-page-container'>
         <p className='agent-page-title'>Let's Tailor Your <span className='agent-page-business-name'>Success!</span><br/> How Can I Assist You Today to Empower <span className='agent-page-business-name'>{project?.ideaGeneration[0].answer?project?.ideaGeneration[0].answer:'Your Idea'}</span></p>
         </div>
         <div className='agent-page-container'>
@@ -104,6 +120,13 @@ function AgentPage() {
                 </div>
             </div>
         </div>
+        </>
+        ):(
+            <>
+            <Loading/>
+            </>
+        )}
+        
     </div>
   )
 }

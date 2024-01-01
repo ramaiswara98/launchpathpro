@@ -10,6 +10,7 @@ import { generateAIOpinion } from '../../services/OpenAI/GenerateAPI'
 import Markdown from 'react-markdown'
 import { Prompt } from '../../utils/Prompt'
 import useFirebaseAuth from '../../hook/useFirebaseAuth'
+import { checkUserPlan } from '../../utils/Subscribe'
 
 function Generate() {
   const {projectId, advice} = useParams();
@@ -207,23 +208,32 @@ function Generate() {
   }
 
   const handleDownloadClick = async() => {
-    if(userFireStore.type === "free"){
+    if(userFireStore.plan === 0){
       alert("You current plan is not include this feature")
     }else{
-      await setIsPrint(true)
-      window.print()
+      const plan = await checkUserPlan(userFireStore.plan,userFireStore.plan_expire_date);
+      if(plan === null){
+
+      }else{
+        await setIsPrint(true)
+        window.print()
+      }
     }
   }
 
-  const handleRegenerate = () => {
-    if(userFireStore.type === "free"){
+  const handleRegenerate = async() => {
+    if(userFireStore.plan === 0){
       alert("You current plan is not include this feature")
     }else{
-      setOutput(null);
-      setAlertText("");
-      generateNow(project);
+      const plan = await checkUserPlan(userFireStore.plan,userFireStore.plan_expire_date);
+      if(plan === null){
+
+      }else{
+        setOutput(null);
+        setAlertText("");
+        generateNow(project);
+      }
     }
-    
   }
 
 

@@ -42,7 +42,7 @@ function SignUp() {
     .then((user) => {
         data.uid = user.uid;
         data.emailVerified = user.emailVerified;
-        data.type='free';
+        data.plan=0;
         data.feedback=false;
         data.projectQuota=1;
         addUserToDatabase(data);

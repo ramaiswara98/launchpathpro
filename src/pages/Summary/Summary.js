@@ -11,6 +11,7 @@ import Loading from '../../component/Loading/Loading'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import PdfView from '../../component/PdfView/PdfView'
 import useFirebaseAuth from '../../hook/useFirebaseAuth'
+import { checkUserPlan } from '../../utils/Subscribe'
 
 function Summary() {
     const {projectId,sectionId} = useParams();
@@ -88,10 +89,16 @@ function Summary() {
         window.URL.revokeObjectURL(blobUrl);
       };
 
-      const handleRetake = () => {
-        if(userFireStore.type === "free"){
+      const handleRetake = async() => {
+        const currentPlan = userFireStore.plan;
+        const expireDate = userFireStore?.plan_expire_date?userFireStore.plan_expire_date:null;
+        const plan = await checkUserPlan(currentPlan, expireDate);
+        if(plan === 0){
             alert("Your current plan not include this feature")
-        }else{
+        }else if(plan === null){
+            alert("Your previous plan has been expired, please renew it to access all the feature")
+        }
+        else{
             window.location.href='/quiz/'+projectId+'/'+section.id
         }
       }

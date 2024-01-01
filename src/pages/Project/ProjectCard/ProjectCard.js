@@ -5,10 +5,13 @@ import IconChecklist from '../../../assets/icon/checklist.png';
 import IconArrowRight from '../../../assets/icon/arrow-right.png';
 import Button from '../../../component/Button/Button';
 import { Constant } from '../../../utils/Constant';
+import { checkUserPlan } from '../../../utils/Subscribe';
+import useFirebaseAuth from '../../../hook/useFirebaseAuth';
 
 function ProjectCard({project,projectId} ) {
     const [state, setState] = useState(null);
     const [completionSum, setCompletionSum] = useState(0);
+    const {user, type, userFireStore} = useFirebaseAuth();
 
     useEffect(() => {
         getCompletionSum();
@@ -44,6 +47,20 @@ function ProjectCard({project,projectId} ) {
             setState(null)
         }else{
             setState(index)
+        }
+    }
+
+    const handleBusinessPlanClicked = async() => {
+        const currentPlan = userFireStore.plan;
+        const expireDate = userFireStore?.plan_expire_date?userFireStore.plan_expire_date:null;
+        const plan = await checkUserPlan(currentPlan, expireDate);
+        if(plan === 0){
+            alert("Your current plan not include this feature")
+        }else if(plan === null){
+            alert("Your previous plan has been expired, please renew it to access all the feature")
+        }
+        else{
+            window.location.href='/quiz/'+projectId+'/businessPlan'
         }
     }
   return (
@@ -193,7 +210,7 @@ function ProjectCard({project,projectId} ) {
                         <Button
                         type={'primary'}
                         text={'Start Planning'}
-                        onClick={()=>{window.location.href='/quiz/'+projectId+'/businessPlan'}}
+                        onClick={()=>{handleBusinessPlanClicked()}}
                         />
                     </div>
                 </>)}
