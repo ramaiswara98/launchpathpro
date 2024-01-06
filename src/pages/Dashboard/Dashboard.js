@@ -14,6 +14,7 @@ import { updateUser } from "../../services/Firebase/FireStore/User";
 
 import Alert from "../../component/Modal/Alert/Alert";
 import { Constant } from "../../utils/Constant";
+import Footer from "../../component/Footer/Footer";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -136,7 +137,7 @@ function Dashboard() {
           />
     </div>
     )}
-    
+    <Footer primary={false}/>
     </>):(<>
     <Loading/>
     </>)}

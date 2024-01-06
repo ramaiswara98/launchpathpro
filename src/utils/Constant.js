@@ -77,8 +77,9 @@ export const Constant = {
     descIdeaValidation:`Validate Your Vision: Our Idea Validation feature asks targeted questions to refine and test your idea. Get tailored guidance to assess market fit and enhance your concept's potential for success`,
     descMarketResearch:`Explore Market Landscapes: Dive into our Market Research feature, guiding you through strategic questions to uncover valuable insights for your idea. Elevate your understanding of market dynamics and fine-tune your concepts for success.`,
     descBusinessPlan:`Blueprint for Success: Our Business Plan tool is your roadmap from idea to reality. By asking targeted questions, it guides you in formulating a comprehensive business plan, turning your vision into a strategic success story.`,
-    alertToken:`Your run out of Project Token, Upgrade to our Pro plan or submit feedback through our form to receive additional tokens.`
-
-
+    alertToken:`Your run out of Project Token, Upgrade to our Pro plan or submit feedback through our form to receive additional tokens.`,
+    PRIVACY_POLICY : `This policy covers how we use your personal information. We take your privacy seriously and will take all measures to protect your personal information. \n
+    Any personal information received will only be used to fill your order. We will not sell or redistribute your information to anyone.`,
+    REFUND_POLICY :`If you are not 100% satisfied with your purchase, within 60 days from the purchase date, we will fully refund the cost of your order. \n You can claim your refund by sendig request refund message to the email below, please set the subject to REFUND REQUEST [YOUR REGISTER EMAIL], so we can process your refund immediately`
 
 }

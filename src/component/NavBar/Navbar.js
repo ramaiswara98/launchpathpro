@@ -49,13 +49,16 @@ function Navbar() {
                   <p className='overlay-item-text' onClick={()=>goTo('/pricing')}>Upgrade</p>
                 </div>
                 )}
-                
-                <div className='overlay-item' onClick={handleLogOut}>
-                  <p className='overlay-item-text'>Log Out</p>
-                </div>
-                <hr/>
                 <div className='overlay-item'>
                   <p className='overlay-item-text' onClick={()=>goTo('/dashboard')}>{userFireStore !== null ? userFireStore.projectQuota+' Token':''}</p>
+                </div>
+               
+                <hr/>
+                <div className='overlay-item'>
+                  <p className='overlay-item-text' onClick={()=>window.location.href = 'mailto:ramaiswara098@gmail.com'}>Contact Us</p>
+                </div>
+                <div className='overlay-item' onClick={handleLogOut}>
+                  <p className='overlay-item-text'>Log Out</p>
                 </div>
               </div>
             )}

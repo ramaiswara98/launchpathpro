@@ -11,6 +11,7 @@ import Markdown from 'react-markdown'
 import { Prompt } from '../../utils/Prompt'
 import useFirebaseAuth from '../../hook/useFirebaseAuth'
 import { checkUserPlan } from '../../utils/Subscribe'
+import Footer from '../../component/Footer/Footer'
 
 function Generate() {
   const {projectId, advice} = useParams();
@@ -258,8 +259,9 @@ function Generate() {
            </div>
             )}
            
-        </div>    
+        </div>  
     </div>
+    
   )
 }
 

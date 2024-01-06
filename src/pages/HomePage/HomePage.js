@@ -13,6 +13,9 @@ import Footer from '../../component/Footer/Footer'
 
 function HomePage() {
   
+  const handleSignUpButton = () => {
+    window.location.href = '/sign-up'
+  }
   
   return (
     <div className='home-page'>
@@ -38,6 +41,7 @@ function HomePage() {
                   <Button
                     type={'primary'}
                     text={'Launch It Now!'}
+                    onClick ={handleSignUpButton}
                   />
               </div>
             </div>
@@ -50,6 +54,7 @@ function HomePage() {
                 <Button
                   type={'primary'}
                   text={'Turn Your Idea Now!'}
+                  onClick ={handleSignUpButton}
                 />
               </div>
               <div className='clock-ticking-right'>
@@ -66,6 +71,7 @@ function HomePage() {
                 <Button
                   type={'primary'}
                   text={'Turn Your Idea Now!'}
+                  onClick ={handleSignUpButton}
                 />
               </div>
             </div>
@@ -79,6 +85,7 @@ function HomePage() {
                 <Button 
                   type={'secondary'}
                   text={'Start Now'}
+                  onClick ={handleSignUpButton}
                 />
               </div>
               <div className='clock-ticking-right'>
@@ -95,6 +102,7 @@ function HomePage() {
                 <Button 
                   type={'secondary'}
                   text={'Start Now'}
+                  onClick ={handleSignUpButton}
                 />
               </div>
             </div>

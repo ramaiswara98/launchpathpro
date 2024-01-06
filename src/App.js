@@ -13,6 +13,7 @@ import useFirebaseAuth from './hook/useFirebaseAuth';
 import Pricing from './pages/Pricing/Pricing';
 import AgentPage from './pages/AgentPage/AgentPage';
 import Generate from './pages/Generate/Generate';
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 
 function App() {
   const {type} = useFirebaseAuth();
@@ -25,6 +26,7 @@ function App() {
         <Route path='/sign-up' element={<SignUp/>}/>
         <Route path='/add-question' element={<AddQuestion/>}/>
         <Route path='/verify-your-email' element={<VerificationEmail/>}/>
+        <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
     </Routes>
     ):(
       <Routes>
@@ -39,6 +41,7 @@ function App() {
       <Route path='/pricing' element={<Pricing/>}/>
       <Route path='/agent-mike/:projectId' element={<AgentPage/>} />
       <Route path='/generate/:advice/:projectId' element={<Generate/>} />
+      <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
     </Routes>
     )}
    

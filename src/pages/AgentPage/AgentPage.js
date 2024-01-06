@@ -8,6 +8,7 @@ import { getProjectById } from '../../services/Firebase/FireStore/Project'
 import useFirebaseAuth from '../../hook/useFirebaseAuth'
 import { checkUserPlan } from '../../utils/Subscribe'
 import Loading from '../../component/Loading/Loading'
+import Footer from '../../component/Footer/Footer'
 
 function AgentPage() {
     const {projectId} = useParams();
